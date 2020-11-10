@@ -85,15 +85,18 @@ function finalScore(inning, i){
 
   /*Code Here*/
 
-let home = 0;
-let away=0;
+let homeScore = 0;
+let awayScore = 0;
   for(let n = 0; n <i; n++){
-    home+=inning();
-    away+=inning();
+    homeScore+=inning();
+    awayScore+=inning();
   }
 
-  return `"Home": ${home},\n"Away": ${away},`;
+  return { Away: awayScore, Home: homeScore };
 }
+
+  
+
 console.log(finalScore(inning, 9));
 
 /* Task 4: 
