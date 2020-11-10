@@ -61,11 +61,12 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
+function inning(scoreNum){
+  let team1 = Math.floor(Math.random(scoreNum) * 2);
+  return team1;
 
 }
+console.log(inning());
 
 /* Task 3: finalScore()
 Use the finalScore function below to do the following:
@@ -80,20 +81,43 @@ For example: invoking finalScore(inning, 9) might return this object:
 }
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inning, i){
 
   /*Code Here*/
 
+let home = 0;
+let away=0;
+  for(let n = 0; n <i; n++){
+    home+=inning();
+    away+=inning();
+  }
+
+  return `"Home": ${home},\n"Away": ${away},`;
 }
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 // create a function called getInningScore 
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(func){
+  return {Away: func(), Home: func()}; 
 }
+function scoreboard(getInningScore, inning, numberOfInnings ) {
+  let  home = 0;
+  let  away = 0;
+  for(let i = 0; i < numberOfInnings; i++){
+    let score = getInningScore(inning);
+    home = home + score.Home;
+    away = away + score.Away;
+    console.log('inning number ' + i + ' - Away Team:' + score.Away +  ' Home Team: '+ score.Home);
+  }
+    console.log('Final Score - Away Team:' + away +  ' Home Team:'+ home);
+}
+
+
+scoreboard(getInningScore, inning, 9); 
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
   1. Receive a callback function, that you create, called `getInningScore`
@@ -138,9 +162,7 @@ Use the scoreboard function below to do the following:
   */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+ 
 
 
 
